@@ -1,0 +1,24 @@
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+const Nav = ({ nameOfApp }) => {
+  return ( 
+    <View style={styles.nav}>
+      <Text>{nameOfApp}</Text>
+    </View>
+   );
+}
+
+const styles = StyleSheet.create({
+  nav: {
+    backgroundColor: '#eaeaea',
+    alignItems: 'center',
+    padding: 10,
+    width: '100%',
+    borderBottomWidth: 2,
+    borderBottomColor: '#dddddd'
+  }
+});
+
+ 
+export default Nav;
