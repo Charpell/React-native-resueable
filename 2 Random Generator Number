@@ -1,0 +1,132 @@
+// App.js
+
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+
+import Generate from './src/Generator/generate';
+import ListItem from './src/Generator/listItem';
+
+type Props = {};
+export default class App extends Component<Props> {
+
+  state = {
+    nameOfApp: "My awesome app",
+    random: [20, 13]
+  }
+
+  onAddRandom = () => {
+    const random = Math.floor(Math.random() * 100) + 1
+    this.setState(prevState => {
+      return {
+        random: [...prevState.random, random]
+      }
+    })
+  }
+
+  onItemDelete = (i) => {
+    const newArray = this.state.random.filter((item, index) => i !== index)
+    this.setState({
+      random: newArray
+    })
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+
+        <Generate add={this.onAddRandom} />
+
+        <ListItem items={this.state.random} onDelete={this.onItemDelete}/>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    backgroundColor: '#F5FCFF',
+    marginTop: 40
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  view2: {
+    backgroundColor: 'blue'
+  }
+});
+
+
+
+
+// Generate.js
+import React from 'react';
+import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+
+const generate = ({ add }) => (
+  <TouchableWithoutFeedback
+    onPress={() => add()}
+  >
+    <View style={styles.generate}>
+      <Text>Add number</Text>
+    </View>  
+  </TouchableWithoutFeedback>
+)
+
+const styles = StyleSheet.create({
+  generate: {
+    backgroundColor: '#00bcd4',
+    alignItems: 'center',
+    padding: 10,
+    width: '100%',
+    marginTop: 20
+  }
+});
+
+export default generate;
+
+
+
+
+// ListItem.js
+
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
+const ListItem = ({ items, onDelete }) => {
+  return ( 
+      items.map((item, i) => (
+        <TouchableOpacity
+          onPress={() => onDelete(i)}
+          key={i}
+          style={styles.listitem}
+        >
+          <View>
+            <Text>{item}</Text>
+          </View>       
+        </TouchableOpacity>
+      ))
+   );
+}
+
+const styles = StyleSheet.create({
+  listitem: {
+    backgroundColor: '#cecece',
+    alignItems: 'center',
+    padding: 10,
+    width: '100%',
+    margin: 5
+  }
+});
+
+ 
+export default ListItem;
