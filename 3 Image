@@ -1,3 +1,18 @@
+// Offline version
+
+import Shirt from './src/assets/images/shirt.png'
+
+ <Image
+  source={Shirt} 
+  style={styles.shirt}
+  resizeMode="contain"
+/>
+
+
+
+
+// Web version
+
 <Image
   source={{ uri: 'http://picsum.photos/400/400'}} 
   style={styles.shirt}
