@@ -1,0 +1,69 @@
+// App
+
+import React from 'react';
+import { StackNavigator } from 'react-navigation';
+
+import HomeComponent from './src/home';
+import ProfileComponent from './src/profile';
+
+const App = StackNavigator({
+  Home: {
+    screen: HomeComponent
+  },
+  Profile: {
+    screen: ProfileComponent
+  }
+})
+
+export default App;
+
+
+
+
+// Home
+
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native'
+
+class HomeComponent extends Component {
+  static navigationOptions = {
+    title: 'Home'
+  }
+
+  state = {  }
+  render() { 
+    const { navigate } = this.props.navigation;
+
+    return ( 
+      <View>
+        <Text>This is home</Text>
+        <Button 
+          title="See profile"
+          onPress={() => {
+            navigate('Profile')
+          }}
+        />
+      </View>
+     );
+  }
+}
+ 
+export default HomeComponent;
+
+
+
+// Profile
+
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native'
+
+class ProfileComponent extends Component {
+  state = {  }
+  render() { 
+    return ( 
+      <Text>THis is profile</Text>
+     );
+  }
+}
+ 
+export default ProfileComponent;
